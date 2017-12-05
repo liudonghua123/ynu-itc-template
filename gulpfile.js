@@ -6,6 +6,8 @@ const gls = require('gulp-live-server');
 const watch = require('gulp-watch');
 const del = require('del');
 const pug = require('gulp-pug');
+const open = require('gulp-open');
+const os = require('os');
 
 const templateHtmlFiles = ['./src/index.html', './src/list.html', './src/article.html'];
 
@@ -61,7 +63,7 @@ gulp.task('watch', function () {
 });
 
 gulp.task('resources', function () {
-    gulp.src(['./src/**/*', '!./src/index.html', '!./src/list.html', '!./src/article.html'], {base: 'src'})
+    gulp.src(['./src/**/*', '!./src/{templates,templates/**}', '!./src/index.html', '!./src/list.html', '!./src/article.html'], {base: 'src'})
         .pipe(gulp.dest('./dist/'));
     return gulp.watch(['./src/**/*'], function (file) {
         gulp.src(['./src/**/*', '!./src/index.html', '!./src/list.html', '!./src/article.html'], {base: 'src'})
@@ -69,9 +71,14 @@ gulp.task('resources', function () {
     });
 });
 
+const browser = os.platform() === 'linux' ? 'google-chrome' : (
+  os.platform() === 'darwin' ? 'google chrome' : (
+  os.platform() === 'win32' ? 'chrome' : 'firefox'));
+
 gulp.task('serve', ['resources'], function () {
     var server = gls.static(['dist'], 8000);
     server.start();
+    gulp.src('').pipe(open({uri: 'http://localhost:8000', app: browser}));
     //use gulp.watch to trigger server actions(notify, start or stop)
     return gulp.watch(['./dist/**/*'], function (file) {
         server.notify.apply(server, [file]);

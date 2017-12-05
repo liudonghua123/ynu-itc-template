@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "gulp-open": "^2.0.0",
     "gulp-pug": "^3.3.0",
     "jquery": "^3.2.1",
     "pug": "^2.0.0-rc.4"
