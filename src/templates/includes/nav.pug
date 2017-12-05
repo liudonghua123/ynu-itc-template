@@ -1,0 +1,38 @@
+nav.navbar.navbar-default.navbar-custom
+    .container-fluid
+        .navbar-header
+            button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+                span.sr-only Navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a.navbar-brand(href='#', target='') 云南大学信息技术中心
+        #navbar.navbar-collapse.collapse
+            ul.nav.navbar-nav
+                li
+                    a(href='#') 首页
+                li
+                    a(href='#') 通知公告
+                li
+                    a(href='#') 新闻动态
+                li
+                    a(href='#') 工作流程
+                li
+                    a(href='#') 下载专区
+                li
+                    a(href='#') 下载专区
+            .search(style='display:block;margin: 0 auto; padding-top:8px;text-align: center;')
+                .input-group
+                    form#au1a(action='#', method='post', name='au1a', onsubmit='', style='display: inline')
+                        input#lucenenewssearchkeyword191188(type='hidden', name='lucenenewssearchkeyword', value='')
+                        input#_lucenesearchtype191188(type='hidden', name='_lucenesearchtype', value='1')
+                        input#searchScope191188(type='hidden', name='searchScope', value='0')
+                        .search(style='display:block;margin:0px 0px 0px 20px;text-align: center;')
+                            .input-group
+                                input#showkeycode191188.form-control(type='text', name='showkeycode', placeholder='Search Keywords...')
+                                span.input-group-btn
+                                    input#searchtext-btn.btn.btn-default(name='', type='submit', value='搜索')
+                            // /input-group
+                // /input-group
+        // /.nav-collapse
+    // /.container-fluid

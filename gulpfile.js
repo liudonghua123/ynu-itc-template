@@ -5,6 +5,7 @@ const es = require('event-stream');
 const gls = require('gulp-live-server');
 const watch = require('gulp-watch');
 const del = require('del');
+const pug = require('gulp-pug');
 
 const templateHtmlFiles = ['./src/index.html', './src/list.html', './src/article.html'];
 
@@ -12,7 +13,20 @@ gulp.task('clean', function () {
     return del(['dist']);
 });
 
-// console.info(bowerFiles());
+gulp.task('pug', function() {
+    return gulp.src('src/templates/*.pug')
+        .pipe(pug({
+            // Your options in here.
+            pretty: true
+        }))
+        .pipe(gulp.dest('./src/'));
+});
+
+gulp.task('watchPug', function () {
+    return gulp.watch('src/templates/*.pug', function (file) {
+        gulp.start('pug');
+    });
+});
 
 // Copy all static bower files
 gulp.task('bower', function () {
@@ -65,4 +79,4 @@ gulp.task('serve', ['resources'], function () {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['bower', 'inject', 'watch', 'serve']);
+gulp.task('default', ['pug', 'watchPug', 'bower', 'inject', 'watch', 'serve']);
