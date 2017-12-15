@@ -6,4 +6,3 @@
 4. npm install
 5. gulp
 6. browse http://localhost:8000
-7. change files in src
